@@ -687,8 +687,21 @@
     <script type="text/javascript">
         
         $(document).ready(function() {
-
-            
+           <?php  
+            if(!isset($_COOKIE['popState'])) {
+           ?> 
+                //echo "Cookie named '" . $cookie_name . "' is not set!";
+                setTimeout(function(){
+                    $('#popup').modal({
+                        backdrop: 'static',
+                        show : true
+                    });
+                    <?php 
+                        setcookie('popState', 'true', time() + 60, "/");
+                     ?>    
+                }, 3000);
+            <?php  } ?>
+            /*
             if(localStorage.getItem('popState') != 'shown'){
                 setTimeout(function(){
                     $('#popup').modal({
@@ -697,7 +710,7 @@
                     });    
                     localStorage.setItem('popState','shown')
                 }, 3000);
-            }
+            }*/
         });
     </script>
 </body>
